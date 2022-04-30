@@ -140,16 +140,18 @@ const weaponsArray = [
 ];
 
 // ITERATION 2
-function selectRandom(array){
-    let cards = Math.floor(Math.random() * array.length)
-   if (array.length === 0){
-       return undefined
-   }
-   return array[cards]
+
+const selectRandom = (arr) => {
+
+    let cards =  Math.floor(Math.random() * arr.length)
+
+    if(arr.length === 0) return undefined
+
+    return arr[cards]
 }
 
+const pickMystery = () => {
 
-function pickMystery(){
     return {
         suspect: selectRandom(suspectsArray),
         room: selectRandom(roomsArray),
@@ -157,8 +159,26 @@ function pickMystery(){
     }
 }
 
+
 // ITERATION 3
 
-function revealMystery(object){
-return `${object.suspect.firstName} ${object.suspect.lastName} killed Mr. Boddy using the ${object.weapon.name} in the ${object.room.name}!`
+const revealMystery = envelope => {
+
+    return `${envelope.suspect.firstName} ${envelope.suspect.lastName} killed Mr. Boddy using the ${envelope.weapon.name} in the ${envelope.room.name}!`
+
+}
+
+
+
+// The following is required to make unit tests work.
+/* Environment setup. Do not modify the below code. */
+if (typeof module !== 'undefined') {
+  module.exports = {
+    suspectsArray,
+    roomsArray,
+    weaponsArray,
+    pickMystery,
+    revealMystery,
+    selectRandom
+  };
 }
